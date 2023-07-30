@@ -1,5 +1,6 @@
 import pymongo
 import pymongoconnetion
+import json
 
 client = pymongoconnetion.connect_to_mongodb()
 
@@ -44,7 +45,9 @@ def historyChatlog():
     db = client["UserAgentLog"]
     collection = db["historyChatlog"]
     historyChatlog = get_all_documents(collection, user, agent)
-    print(historyChatlog)
+    jsonHistoryChatlog = json.dumps(historyChatlog, indent=2, ensure_ascii=False)
+    print(jsonHistoryChatlog)
+    return historyChatlog
 
 
 historyChatlog()
